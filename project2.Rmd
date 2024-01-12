@@ -1,0 +1,124 @@
+---
+title: "stats"
+output:
+  word_document: default
+  html_document: default
+date: "2023-12-10"
+---
+
+
+```{r}
+
+library(readr)
+ICU_mortality_HF <- read_csv("E:\\SEM 2\\Applied stats\\project\\ICU_mortality_HF.csv")
+View(ICU_mortality_HF)
+head(ICU_mortality_HF)
+```
+
+
+```{r}
+names(ICU_mortality_HF)
+```
+
+
+```{r}
+summary(ICU_mortality_HF)
+```
+
+
+```{r}
+## Dataset Overview:
+str(ICU_mortality_HF)
+```
+
+
+```{r}
+# Assuming ICU_mortality_HF is your data frame
+# Replace this with your actual data frame
+# ICU_mortality_HF <- ...
+
+# Select numeric columns
+numeric_columns <- ICU_mortality_HF[sapply(ICU_mortality_HF, is.numeric)]
+
+# Set up multiple plots
+par(mfrow=c(2, 2))  # Adjust rows and columns based on the number of numeric columns
+
+# Plot histograms for each numeric column
+for (column in names(numeric_columns)) {
+  hist(numeric_columns[[column]], main=paste("Histogram of", column), xlab=column, col="lightblue", border="black")
+}
+
+# Reset the plotting layout
+par(mfrow=c(1, 1))
+
+
+
+
+```
+
+```{r}
+# Load necessary libraries
+library(readr)
+
+
+# Check if columns exist
+vars <- c("heart rate", "Systolic blood pressure", "Diastolic blood pressure", 
+          "Respiratory rate", "temperature", "Platelets", "glucose")
+existing_vars <- intersect(vars, names(ICU_mortality_HF))
+
+if (length(existing_vars) < length(vars)) {
+  stop("Not all specified columns found in the dataset.")
+}
+
+# Extract the specified variables
+selected_vars <- ICU_mortality_HF[, existing_vars]
+
+# Create individual scatter plots
+for (i in 1:(length(existing_vars) - 1)) {
+  for (j in (i + 1):length(existing_vars)) {
+    x_var <- existing_vars[i]
+    y_var <- existing_vars[j]
+    
+    plot(selected_vars[[x_var]], selected_vars[[y_var]],
+         main = paste("Scatter Plot of", x_var, "vs", y_var),
+         xlab = x_var, ylab = y_var,
+         pch = 16)
+  }
+}
+
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
